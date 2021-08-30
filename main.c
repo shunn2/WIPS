@@ -75,6 +75,7 @@ int mac_comp(uint8_t *mac, char *file_name)
     while (!feof(f))
     {
         line = fgets(buffer, 100, f);
+        if(line == NULL) break;
         str_tok(buffer, arr);
         for (int i = 0; i < MAC_len; i++)
         {
@@ -99,6 +100,7 @@ int SSID_comp(char *SSID, char *file_name)
     while (!feof(f))
     {
         line = fgets(buffer, 100, f);
+        if(line == NULL) break;
         if (!strcmp(line, SSID))
         {
             fclose(f);
@@ -170,9 +172,9 @@ void print_mac(uint8_t *mac, int rouge)
 
 int packet_scan(pcap_t *_handle, AP_info **ap_info, int *info_size) // WIPS Start
 {
-    char *Device_whitelist = "/home/ubuntu/vscode/.vscode/_WIPS/Device_whitelist.txt"; // Device_whitelist file
-    char *AP_whitelist = "/home/ubuntu/vscode/.vscode/_WIPS/AP_whitelist.txt"; // AP_whitelist file
-    char *SSID_whitelist = "/home/ubuntu/vscode/.vscode/_WIPS/SSID_whitelist.txt"; // SSID_whitelist file
+    char *Device_whitelist = "/home/shunn2/wips1/bob-WIPS/Device_whitelist.txt"; // Device_whitelist file
+    char *AP_whitelist = "/home/shunn2/wips1/bob-WIPS/AP_whitelist.txt"; // AP_whitelist file
+    char *SSID_whitelist = "/home/shunn2/wips1/bob-WIPS/SSID_whitelist.txt"; // SSID_whitelist file
     int Device, AP, SSID;
 
     struct pcap_pkthdr *header;
@@ -453,6 +455,7 @@ void file_open(char *file_name)
     while (!feof(f))
     {
         line = fgets(buffer, 100, f);
+        if(line == NULL) break;
         printf("- %s", line);
         count++;
     }
@@ -474,9 +477,9 @@ int main()
     printf("\n**WIPS**\n\n");
     printf("\033[1;36m< White_list >\033[0m\n\n");
     printf("[Device]\n");
-    file_open("/home/ubuntu/vscode/.vscode/_WIPS/Device_whitelist.txt");
+    file_open("/home/shunn2/wips1/bob-WIPS/Device_whitelist.txt");
     printf("[AP]\n");
-    file_open("/home/ubuntu/vscode/.vscode/_WIPS/AP_whitelist.txt");
+    file_open("/home/shunn2/wips1/bob-WIPS/AP_whitelist.txt");
     printf("\n\033[1;36m< Policy >\033[0m\n\n");
     printf(" - Rouge AP/Device\n");
     printf(" - Honey Pot\n");
